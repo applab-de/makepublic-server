@@ -2,5 +2,5 @@
 bind_port = 7000
 vhost_http_port = 18080
 vhost_https_port = 18443
-subdomain_host = makepublic.net
-token = ...
+subdomain_host = "makepublic.net"
+token = "..."

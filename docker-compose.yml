@@ -4,8 +4,8 @@ services:
     container_name: makepublic.frps
     restart: unless-stopped
     volumes:
-      - ./frps.ini:/frps.ini
-    command: -c /frps.ini
+      - ./frps.toml:/frps.toml
+    command: -c /frps.toml
     networks:
       - traefik
     ports:

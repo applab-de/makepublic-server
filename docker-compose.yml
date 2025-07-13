@@ -1,0 +1,28 @@
+services:
+  frps:
+    image: snowdreamtech/frps
+    container_name: makepublic.frps
+    restart: unless-stopped
+    volumes:
+      - ./frps.ini:/frps.ini
+    command: -c /frps.ini
+    networks:
+      - traefik
+    ports:
+      - "7000:7000"    # frp control
+      - "18080:18080"  # http-tunnel
+      - "18443:18443"  # https-tunnel
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.makepublic.rule=HostRegexp(`[a-z0-9]+\\.makepublic\\.net`)"
+      - "traefik.http.routers.makepublic.priority=1"
+      - "traefik.http.routers.makepublic.entrypoints=websecure"
+      - "traefik.http.services.makepublic.loadbalancer.server.port=18080"
+      - "traefik.http.routers.makepublic.tls=true"
+      - "traefik.http.routers.makepublic.tls.certresolver=hetzner"
+      - "traefik.http.routers.makepublic.tls.domains[0].main=makepublic.net"
+      - "traefik.http.routers.makepublic.tls.domains[0].sans=*.makepublic.net"
+
+networks:
+  traefik:
+    external: true

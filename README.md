@@ -25,3 +25,7 @@ Der Server ermöglicht es, beliebige lokale Dienste von internen Rechnern aus ü
 ## Installation
 
 ...
+
+## Hinweis
+Der Server arbeitet mit [MakePublic Client](https://github.com/applab-de/makepublic-client/tree/main) zusammen, um lokale Dienste ins Internet weiterzuleiten.
+
